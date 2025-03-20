@@ -1,9 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const dotenv = require("dotenv"); // ✅ Use require() instead of import
-
-dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -11,10 +8,9 @@ app.use(cors());
 const PORT = process.env.PORT || 5001;
 
 app.get("/", async (req, res) => {
-    const pnr = req.query.pnr; // ✅ Use 'pnr' instead of 'pnrNumber'
-
+    const pnr = req.query.pnr;
     if (!pnr || pnr.length !== 10) {
-        return res.status(400).json({ error: "Valid 10-digit PNR number required" });
+        return res.status(400).json({ error: "Valid 10-digit PNR required" });
     }
 
     try {
@@ -22,13 +18,14 @@ app.get("/", async (req, res) => {
             headers: {
                 "User-Agent": "Mozilla/5.0",
                 "Referer": "https://www.redbus.in/"
-            }
+            },
+            timeout: 150000 // ⏳ Increase timeout to 15 sec
         });
 
         res.json(response.data);
     } catch (error) {
-        console.error("Error fetching PNR data:", error);
-        res.status(500).json({ error: "Failed to fetch data from RedBus API" });
+        console.error("Error fetching PNR data:", error.message);
+        res.status(500).json({ error: "Failed to fetch data from RedBus API", details: error.message });
     }
 });
 
