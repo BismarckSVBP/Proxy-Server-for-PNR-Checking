@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+import dotenv from "dotenv";
 
 const app = express();
 app.use(cors());
-
+dotenv.config();
+const PORT = process.env.PORT || 5001;
 app.get("/", async (req, res) => {
     const pnr = req.query.pnr;  // ✅ Use 'pnr' instead of 'pnrNumber'
     if (!pnr || pnr.length !== 10) {
@@ -26,5 +28,5 @@ app.get("/", async (req, res) => {
     }
 });
 
-const PORT = 5001;
+
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
