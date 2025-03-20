@@ -6,7 +6,11 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+
+# Ignore environment variables
 .env
+/backend/.env
+
 # Build Outputs (Do NOT ignore frontend/dist)
 node_modules
 /backend/dist  
@@ -24,11 +28,7 @@ node_modules
 *.sln
 *.sw?
 
-# Ignore backend environment variables
-/backend/.env
-
-# Ignore backend node_modules but keep frontend build output
+# Ignore backend dependencies
 /backend/node_modules
 /frontend/node_modules
-/.vercel
-.vercel
+
