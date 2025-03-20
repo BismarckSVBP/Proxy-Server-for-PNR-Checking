@@ -5,7 +5,7 @@ const axios = require("axios");
 const app = express();
 app.use(cors());
 
-app.get("/getPNRData", async (req, res) => {
+app.get("/", async (req, res) => {
     const pnr = req.query.pnr;  // ✅ Use 'pnr' instead of 'pnrNumber'
     if (!pnr || pnr.length !== 10) {
         return res.status(400).json({ error: "Valid 10-digit PNR number required" });
