@@ -12,9 +12,9 @@ app.get("/", async (req, res) => {
     if (!pnr || pnr.length !== 10) {
         return res.status(400).json({ error: "Valid 10-digit PNR required" });
     }
-//`https://www.redbus.in/railways/api/getPnrData?pnrno=${pnr}`
+
     try {
-        const response = await axios.get(`https://api.railbeeps.com/api/getPNR/api-key/web-cfc8cf88fa0ac3b6fd8f9570608c6911/viewState/a4256aeffa/pnrno/${pnr}/push/0`, {
+        const response = await axios.get(`https://www.redbus.in/railways/api/getPnrData?pnrno=${pnr}`, {
             headers: {
                 "User-Agent": "Mozilla/5.0",
                 "Referer": "https://www.redbus.in/"
