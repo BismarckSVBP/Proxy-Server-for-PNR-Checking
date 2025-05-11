@@ -9,9 +9,9 @@ const PORT = process.env.PORT || 5001;
 
 app.get("/", async (req, res) => {
     const pnr = req.query.pnr;
-    if (!pnr || pnr.length !== 10) {
-        return res.status(400).json({ error: "Valid 10-digit PNR required" });
-    }
+    // if (!pnr || pnr.length !== 10) {
+    //     return res.status(400).json({ error: "Valid 10-digit PNR required" });
+    // }
 // https://www.redbus.in/railways/api/getPnrData?pnrno=${pnr}
     try {
         const response = await axios.get(`https://www.redbus.in/railways/api/getCoachPosition?trainNo=${pnr}&stn=null`, {
